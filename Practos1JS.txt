@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript в HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #result {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        #result p {
+            margin: 0;
+        }
+        strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Так наши ответы:</h1>
+    <div id="result">
+        <!-- Все остальное ниже по типу заданий, только одно не выполнил -->
+    </div>
+
+    <script>   
+        const fruits = ['apple', 'apple', 'kiwi', 'banana', 'kiwi', 'apple'];
+        const fruitCount = {};
+        fruits.forEach(fruit => {
+            fruitCount[fruit] = (fruitCount[fruit] || 0) + 1;
+        });
+        document.getElementById("result").innerHTML += "<p><strong>№1:</strong> " + JSON.stringify(fruitCount) + "</p>";
+
+        
+        const uniqueFruitsSet = new Set(fruits);
+        const uniqueFruitsArray = [...uniqueFruitsSet];
+        document.getElementById("result").innerHTML += "<p><strong>№2:</strong> " + JSON.stringify(uniqueFruitsArray) + "</p>";
+
+        
+        const students = [
+            { name: 'alex', age: 25 },
+            { name: 'mike', age: 24 },
+            { name: 'masha', age: 29 },
+            { name: 'will', age: 11 },
+        ];
+        function groupStudentsByAge(students) {
+            const groupedStudents = students.reduce((acc, student) => {
+                const { age, name } = student;
+                if (!acc[age]) {
+                    acc[age] = [];
+                }
+                acc[age].push(name);
+                return acc;
+            }, {});
+            document.getElementById("result").innerHTML += "<p><strong>№3:</strong> " + JSON.stringify(groupedStudents) + "</p>";
+        }
+        groupStudentsByAge(students);
+
+    </script>
+</body>
+</html>
